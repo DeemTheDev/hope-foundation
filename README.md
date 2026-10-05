@@ -1,5 +1,8 @@
 # Hope Foundation - Full Stack Mobile & Web Application 🌍💻📱
 
+> **Repository layout (October 2026).** `client.hope-foundation/` is the Expo / React Native mobile app; `service.hope-foundation/` is the Next.js website and backend. Branching: `feature/mian/<task>` -> pull request into `develop` -> Nadeem merges `develop` into `main`. See [docs/GIT-PROTOCOL.md](docs/GIT-PROTOCOL.md). The rest of this README predates the revival and is being rewritten; see `AI_CONTEXT.md` once it is committed for the accurate technical picture.
+
+
 Welcome to the **Hope Foundation** project repository! This is a **full-stack mobile and web application** designed to revolutionize charitable giving by connecting donors with local and national nonprofit organizations. The platform aims to make charitable donations more accessible, transparent, and secure, empowering users to support causes they care about with just a few taps.
 
 ---
