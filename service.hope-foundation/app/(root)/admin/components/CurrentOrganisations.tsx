@@ -75,13 +75,13 @@ const CurrentOrganisations = () => {
 
   if (loading) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
-        <div className="h-8 w-48 bg-base-200 rounded animate-pulse"></div>
+      <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
+        <div className="h-8 w-48 bg-base-200 rounded-sm animate-pulse"></div>
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="h-12 bg-base-200 rounded animate-pulse"
+              className="h-12 bg-base-200 rounded-sm animate-pulse"
             ></div>
           ))}
         </div>
@@ -91,7 +91,7 @@ const CurrentOrganisations = () => {
 
   if (error) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-4">
         <div className="text-error text-center">{error}</div>
         <button
           onClick={handleRefresh}
@@ -106,7 +106,7 @@ const CurrentOrganisations = () => {
 
   if (!organisations.length) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-4">
         <div className="text-center">No organisations found</div>
       </div>
     );
@@ -114,7 +114,7 @@ const CurrentOrganisations = () => {
 
   if (filteredOrganisations.length === 0 && searchQuery) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-4">
         <div className="text-center">
           No organisations found matching &quot;{searchQuery}&quot;
         </div>
@@ -123,7 +123,7 @@ const CurrentOrganisations = () => {
   }
 
   return (
-    <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+    <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-medium">Current Organisations</h3>
         <div className="flex items-center gap-2">
@@ -184,7 +184,7 @@ const CurrentOrganisations = () => {
                           className="fixed inset-0 z-20"
                           onClick={() => setOpenMenuId(null)}
                         />
-                        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-black ring-opacity-5 z-30">
+                        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-base-100 ring-1 ring-black/5 z-30">
                           <button
                             onClick={() => handleDelete(org.id)}
                             className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-base-200 rounded-md disabled:opacity-50"

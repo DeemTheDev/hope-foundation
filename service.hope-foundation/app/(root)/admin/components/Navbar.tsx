@@ -11,11 +11,11 @@ const Navbar = async () => {
       {session?.user?.email == "ziaeetechnologies@gmail.com" &&
       session?.user ? (
         <>
-          <div className="flex-1">
+          <div className="flex flex-1 items-center">
             <a className="btn btn-ghost text-xl">Admin - {session.user.name}</a>
           </div>
-          <div className="flex-none gap-2">
-            <div className="form-control">
+          <div className="flex flex-none items-center gap-2">
+            <div className="flex flex-col">
               <SearchInput />
             </div>
             <div className="dropdown dropdown-end z-50">
@@ -33,7 +33,7 @@ const Navbar = async () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-neutral rounded-box z-1 mt-3 w-52 p-2 shadow-sm"
               >
                 <li>
                   <a href="https://dashboard.clerk.com/apps/app_2oXA6hwMvkgeHAV0kVOyCJPB0tW/instances/ins_2oXA6gtwDlhD1RtHLxoeZR70VYJ">
@@ -66,11 +66,11 @@ const Navbar = async () => {
         </>
       ) : (
         <>
-          <div className="flex-1">
+          <div className="flex flex-1 items-center">
             <a className="btn btn-ghost text-xl">Admin - {""}</a>
           </div>
-          <div className="flex-none gap-2">
-            <div className="form-control">
+          <div className="flex flex-none items-center gap-2">
+            <div className="flex flex-col">
               <SearchInput />
             </div>
             <div className="dropdown dropdown-end">
@@ -85,7 +85,7 @@ const Navbar = async () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-neutral rounded-box z-1 mt-3 w-52 p-2 shadow-sm"
               >
                 <li>
                   <form

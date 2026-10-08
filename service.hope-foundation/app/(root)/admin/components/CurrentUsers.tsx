@@ -51,13 +51,13 @@ const CurrentUsers = () => {
 
   if (loading) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
-        <div className="h-8 w-48 bg-base-200 rounded animate-pulse"></div>
+      <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
+        <div className="h-8 w-48 bg-base-200 rounded-sm animate-pulse"></div>
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
-              className="h-12 bg-base-200 rounded animate-pulse"
+              className="h-12 bg-base-200 rounded-sm animate-pulse"
             ></div>
           ))}
         </div>
@@ -67,7 +67,7 @@ const CurrentUsers = () => {
 
   if (error) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-4">
         <div className="text-error text-center">{error}</div>
         <button
           onClick={handleRefresh}
@@ -82,7 +82,7 @@ const CurrentUsers = () => {
 
   if (!users.length) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-4">
         <div className="text-center">No users found</div>
       </div>
     );
@@ -90,7 +90,7 @@ const CurrentUsers = () => {
 
   if (filteredUsers.length === 0 && searchQuery) {
     return (
-      <div className="bg-base-100 rounded-xl shadow-sm p-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-4">
         <div className="text-center">
           No users found matching &quot;{searchQuery}&quot;
         </div>
@@ -99,7 +99,7 @@ const CurrentUsers = () => {
   }
 
   return (
-    <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+    <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
       <div className="flex justify-between items-center">
         <h3 className="text-lg font-medium">Current Users</h3>
         <div className="flex items-center gap-2">

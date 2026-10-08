@@ -1,8 +1,8 @@
-// middleware.ts
+// proxy.ts (Next.js 16 renamed the middleware file convention to proxy)
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Get the organisation ID from the URL
   const organisationId = request.nextUrl.pathname.split('/')[2]
 
@@ -21,7 +21,7 @@ export function middleware(request: NextRequest) {
   return NextResponse.next()
 }
 
-// Configure which routes to run middleware on
+// Configure which routes to run the proxy on
 export const config = {
   matcher: '/organisation/:path*'
 }

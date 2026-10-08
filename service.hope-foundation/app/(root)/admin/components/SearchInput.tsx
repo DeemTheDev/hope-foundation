@@ -24,7 +24,7 @@ export const SearchInput = () => {
       placeholder="Search"
       defaultValue={searchParams.get("search")?.toString()}
       onChange={(e) => handleSearch(e.target.value)}
-      className="input input-bordered w-24 md:w-auto"
+      className="input w-24 md:w-auto"
     />
   );
 };

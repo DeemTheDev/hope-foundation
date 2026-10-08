@@ -43,7 +43,7 @@ const OrganisationLogin = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
       <div className="w-full max-w-md">
-        <div className="bg-base-100 rounded-xl shadow-sm p-6 space-y-6">
+        <div className="bg-base-100 rounded-xl shadow-xs p-6 space-y-6">
           <div className="text-center">
             <h2 className="text-2xl font-bold">
               {isAdmin ? "Admin Access" : "Organisation Login"}
@@ -105,7 +105,7 @@ const OrganisationLogin = () => {
                         email: e.target.value,
                       }))
                     }
-                    className="input input-bordered w-full pl-10"
+                    className="input w-full pl-10"
                     placeholder="Enter your organisation email"
                     required
                   />
@@ -125,7 +125,7 @@ const OrganisationLogin = () => {
                         password: e.target.value,
                       }))
                     }
-                    className="input input-bordered w-full pl-10"
+                    className="input w-full pl-10"
                     placeholder="Enter your password"
                     required
                   />

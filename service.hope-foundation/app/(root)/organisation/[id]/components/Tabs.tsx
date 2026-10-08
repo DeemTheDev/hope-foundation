@@ -25,11 +25,11 @@ const Tabs = ({ id }: { id: string }) => {
   return (
     <div className="w-full h-auto">
       <div className="flex justify-center mb-4">
-        <div className="inline-flex tabs tabs-boxed" role="tablist">
+        <div className="inline-flex tabs tabs-box" role="tablist">
           <button
             role="tab"
             className={`tab w-32 ${
-              activeTab === "donations" ? "tab-active" : ""
+              activeTab === "donations" ? "tab-active bg-primary! text-primary-content!" : ""
             }`}
             onClick={() => setActiveTab("donations")}
           >
@@ -37,7 +37,7 @@ const Tabs = ({ id }: { id: string }) => {
           </button>
           <button
             role="tab"
-            className={`tab w-32 ${activeTab === "blog" ? "tab-active" : ""}`}
+            className={`tab w-32 ${activeTab === "blog" ? "tab-active bg-primary! text-primary-content!" : ""}`}
             onClick={() => setActiveTab("blog")}
           >
             Blog
@@ -45,7 +45,7 @@ const Tabs = ({ id }: { id: string }) => {
           <button
             role="tab"
             className={`tab w-32 ${
-              activeTab === "profile" ? "tab-active" : ""
+              activeTab === "profile" ? "tab-active bg-primary! text-primary-content!" : ""
             }`}
             onClick={() => setActiveTab("profile")}
           >

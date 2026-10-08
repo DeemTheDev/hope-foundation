@@ -33,10 +33,10 @@ const Navbar = ({ id }: { id: string }) => {
   if (loading) {
     return (
       <div className="navbar bg-base-300 text-neutral-content animate-pulse">
-        <div className="flex-1">
-          <div className="h-8 w-48 bg-base-300-focus rounded"></div>
+        <div className="flex flex-1 items-center">
+          <div className="h-8 w-48 bg-base-300-focus rounded-sm"></div>
         </div>
-        <div className="flex-none gap-2">
+        <div className="flex flex-none items-center gap-2">
           <div className="h-10 w-10 rounded-full bg-base-300-focus"></div>
         </div>
       </div>
@@ -46,7 +46,7 @@ const Navbar = ({ id }: { id: string }) => {
   if (error) {
     return (
       <div className="navbar bg-base-300 text-neutral-content">
-        <div className="flex-1">
+        <div className="flex flex-1 items-center">
           <span className="text-error">{error}</span>
         </div>
       </div>
@@ -56,7 +56,7 @@ const Navbar = ({ id }: { id: string }) => {
   if (!organisation) {
     return (
       <div className="navbar bg-base-300 text-neutral-content ">
-        <div className="flex-1">
+        <div className="flex flex-1 items-center">
           <span>Organisation not found</span>
         </div>
       </div>
@@ -65,15 +65,15 @@ const Navbar = ({ id }: { id: string }) => {
 
   return (
     <div className="navbar bg-base-300 text-neutral-content ">
-      <div className="flex-1">
+      <div className="flex flex-1 items-center">
         <a className="btn btn-ghost text-xl">Hope - {organisation.name}</a>
       </div>
-      <div className="flex-none gap-2">
-        <div className="form-control">
+      <div className="flex flex-none items-center gap-2">
+        <div className="flex flex-col">
           <input
             type="text"
             placeholder="Search"
-            className="input input-bordered w-24 md:w-auto"
+            className="input w-24 md:w-auto"
           />
         </div>
         <div className="dropdown dropdown-end">
@@ -91,7 +91,7 @@ const Navbar = ({ id }: { id: string }) => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-neutral rounded-box z-1 mt-3 w-52 p-2 shadow-sm"
           >
             <li>
               <a onClick={handleLogout}>Logout</a>

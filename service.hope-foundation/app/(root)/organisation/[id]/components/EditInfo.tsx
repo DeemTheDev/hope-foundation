@@ -11,11 +11,9 @@ import {
   Check,
   X,
   MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
   PencilLine,
 } from "lucide-react";
+import { Facebook, Twitter, Instagram } from "@/components/icons/SocialIcons";
 
 const EditInfo = ({ id }: { id: string }) => {
   const [organisation, setOrganisation] = useState<Organisation | null>(null);
@@ -180,12 +178,12 @@ const EditInfo = ({ id }: { id: string }) => {
     <>
       <div className="w-full max-w-2xl mx-auto space-y-6">
         {/* Previous Avatar Section */}
-        <div className="flex flex-col md:flex-row items-center gap-6 p-4 bg-base-100 rounded-xl shadow-sm">
+        <div className="flex flex-col md:flex-row items-center gap-6 p-4 bg-base-100 rounded-xl shadow-xs">
           {/* ... previous avatar code ... */}
         </div>
 
         {/* Description Section */}
-        <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+        <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-medium">About</h3>
             <button
@@ -211,7 +209,7 @@ const EditInfo = ({ id }: { id: string }) => {
                   }))
                 }
                 placeholder="Tell us about your organization..."
-                className="textarea textarea-bordered w-full h-32"
+                className="textarea w-full h-32"
               />
               <div className="flex justify-end gap-2">
                 <button
@@ -239,7 +237,7 @@ const EditInfo = ({ id }: { id: string }) => {
         </div>
 
         {/* Address Section */}
-        <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+        <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-medium">Location</h3>
             <button
@@ -265,7 +263,7 @@ const EditInfo = ({ id }: { id: string }) => {
                     }))
                   }
                   placeholder="Enter organization address"
-                  className="input input-bordered w-full pl-8"
+                  className="input w-full pl-8"
                 />
                 <MapPin
                   size={16}
@@ -299,7 +297,7 @@ const EditInfo = ({ id }: { id: string }) => {
         </div>
 
         {/* Social Media Section */}
-        <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+        <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
           <div className="flex justify-between items-center">
             <h3 className="text-lg font-medium">Social Media</h3>
             <button
@@ -328,7 +326,7 @@ const EditInfo = ({ id }: { id: string }) => {
                     }))
                   }
                   placeholder="Facebook URL"
-                  className="input input-bordered w-full pl-8"
+                  className="input w-full pl-8"
                 />
                 <Facebook
                   size={16}
@@ -350,7 +348,7 @@ const EditInfo = ({ id }: { id: string }) => {
                     }))
                   }
                   placeholder="Twitter URL"
-                  className="input input-bordered w-full pl-8"
+                  className="input w-full pl-8"
                 />
                 <Twitter
                   size={16}
@@ -372,7 +370,7 @@ const EditInfo = ({ id }: { id: string }) => {
                     }))
                   }
                   placeholder="Instagram URL"
-                  className="input input-bordered w-full pl-8"
+                  className="input w-full pl-8"
                 />
                 <Instagram
                   size={16}

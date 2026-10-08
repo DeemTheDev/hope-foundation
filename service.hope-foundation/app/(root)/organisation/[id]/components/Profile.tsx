@@ -15,7 +15,7 @@ const Profile = ({ id }: { id: string }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left Column - Gallery */}
         <section className="w-full h-full">
-          <div className="bg-base-100 rounded-xl shadow-sm h-full">
+          <div className="bg-base-100 rounded-xl shadow-xs h-full">
             <h2 className="text-xl font-semibold p-4 border-b">Gallery</h2>
             <GalleryGrid id={id} />
           </div>
@@ -23,7 +23,7 @@ const Profile = ({ id }: { id: string }) => {
 
         {/* Right Column - Edit Info */}
         <section className="w-full h-full">
-          <div className="bg-base-100 rounded-xl shadow-sm h-full">
+          <div className="bg-base-100 rounded-xl shadow-xs h-full">
             <h2 className="text-xl font-semibold p-4 border-b">
               Organization Details
             </h2>

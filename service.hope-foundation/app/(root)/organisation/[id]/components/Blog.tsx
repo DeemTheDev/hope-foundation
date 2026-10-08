@@ -96,11 +96,11 @@ const BlogManagement = ({ id }: { id: string }) => {
   return (
     <div className="ml-15 w-full min-w-[620px] max-w-4xl mx-auto space-y-6 p-4">
       {/* Create New Blog Post Section */}
-      <div className="bg-base-100 rounded-xl shadow-sm p-6 space-y-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-6 space-y-4">
         <h2 className="text-xl font-semibold">Create New Blog Post</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="form-control">
+          <div className="flex flex-col">
             <div className="dropdown">
               <div
                 tabIndex={0}
@@ -112,7 +112,7 @@ const BlogManagement = ({ id }: { id: string }) => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-emerald-950 rounded-box z-[1] w-52 p-2 shadow"
+                className="dropdown-content menu bg-emerald-950 rounded-box z-1 w-52 p-2 shadow-sm"
               >
                 {postTypes.map((type) => (
                   <li key={type}>
@@ -123,9 +123,9 @@ const BlogManagement = ({ id }: { id: string }) => {
             </div>
           </div>
 
-          <div className="form-control">
+          <div className="flex flex-col">
             <textarea
-              className="textarea  textarea-accent h-32"
+              className="textarea textarea-accent w-full h-32"
               placeholder="Write your blog post here..."
               value={newPost.content}
               onChange={(e) =>
@@ -166,7 +166,7 @@ const BlogManagement = ({ id }: { id: string }) => {
       )}
 
       {/* Blog History Section */}
-      <div className="bg-base-100 rounded-xl shadow-sm p-6 space-y-4">
+      <div className="bg-base-100 rounded-xl shadow-xs p-6 space-y-4">
         <h2 className="text-xl font-semibold">Blog History</h2>
 
         <div className="space-y-6">
@@ -181,7 +181,7 @@ const BlogManagement = ({ id }: { id: string }) => {
             blogPosts.map((post) => (
               <div
                 key={post.id}
-                className="bg-base-100 border border-base-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200"
+                className="bg-base-100 border border-base-200 rounded-xl p-6 shadow-xs hover:shadow-md transition-all duration-200"
               >
                 <div className="flex justify-between items-start gap-4">
                   <div className="flex-1 space-y-3">
