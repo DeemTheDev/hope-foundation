@@ -116,7 +116,7 @@ const CurrentOrganisations = () => {
     return (
       <div className="bg-base-100 rounded-xl shadow-sm p-4">
         <div className="text-center">
-          No organisations found matching "{searchQuery}"
+          No organisations found matching &quot;{searchQuery}&quot;
         </div>
       </div>
     );

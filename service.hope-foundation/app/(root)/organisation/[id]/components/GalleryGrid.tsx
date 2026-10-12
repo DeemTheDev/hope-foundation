@@ -25,7 +25,7 @@ const GalleryGrid = ({ id }: { id: string }) => {
         if (error || !organisationImages || organisationImages.length === 0) {
           return;
         }
-      } catch (err) {
+      } catch {
         setError(
           "Failed to Retrieve Organisation Images / No Images Uploaded !"
         );
@@ -55,7 +55,7 @@ const GalleryGrid = ({ id }: { id: string }) => {
 
       if (!response.ok) throw new Error("Upload failed");
 
-      const { url } = await response.json();
+      await response.json();
 
       // Add the new image to the database and update local state
       const updatedImages = await getOrganisationImages(id);
