@@ -19,8 +19,6 @@ import OAuth from "@/components/OAuth";
 import { useSignIn } from "@clerk/clerk-expo";
 
 const SignIn = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   /**Form handling with Clerk provider for authentication  */
 

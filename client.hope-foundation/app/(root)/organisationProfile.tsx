@@ -18,7 +18,7 @@ import { images as imageIcons, icons } from "@/constant";
 import { router } from "expo-router";
 import * as Linking from "expo-linking";
 import { Carousel } from "react-native-reanimated-carousel";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactNativeModal from "react-native-modal";
 import { useUser } from "@clerk/clerk-expo";
 import Payment from "@/components/Payment";
@@ -77,7 +77,7 @@ const ImageSlide = ({ imageUrl }: { imageUrl: string }) => {
 };
 
 // Organisation Profile Export
-const organisationProfile = () => {
+const OrganisationProfile = () => {
   // Get the selected organization from Zustand store
   const selectedOrg = useOrganisationStore((state) => state.selectedOrg);
   const width = Dimensions.get("window").width;
@@ -93,42 +93,21 @@ const organisationProfile = () => {
   const [donationAmount, setDonationAmount] = useState("");
 
   // States for Stripe fee calculations
-  const [processingFee, setProcessingFee] = useState("0.00");
-  const [subtotalAmount, setSubtotalAmount] = useState("0.00");
+  const numericAmount = parseFloat(donationAmount);
+  const hasAmount = donationAmount !== "" && !Number.isNaN(numericAmount);
+  const fee = hasAmount ? numericAmount * 0.029 + 5.43 : 0;
+  const processingFee = fee.toFixed(2);
+  const subtotalAmount = (hasAmount ? numericAmount + fee : 0).toFixed(2);
 
   // Social Links
-  const [socials, setSocials] = useState<SocialLinks>();
 
   // Fetch social links
   const {
     data: socialsResponse,
-    loading,
-    error,
   } = useFetch<{ data: SocialLinks }>(`/(api)/socials/${selectedOrg?.id}`);
 
   // Get the social links from the response
   const socialsLinks = socialsResponse?.data;
-
-  // Update the fee calculation when donation amount changes
-  useEffect(() => {
-    if (donationAmount) {
-      const amount = parseFloat(donationAmount);
-      if (!isNaN(amount)) {
-        // Calculate processing fee (2.9% + R5.43)
-        const fee = amount * 0.029 + 5.43;
-        const subtotal = amount + fee;
-
-        setProcessingFee(fee.toFixed(2));
-        setSubtotalAmount(subtotal.toFixed(2));
-      } else {
-        setProcessingFee("0.00");
-        setSubtotalAmount("0.00");
-      }
-    } else {
-      setProcessingFee("0.00");
-      setSubtotalAmount("0.00");
-    }
-  }, [donationAmount]);
 
   // Handle back navigation
   const handleBack = () => {
@@ -521,7 +500,7 @@ const organisationProfile = () => {
                       {/* Note */}
                       <Text className="text-gray-400 text-sm text-center pb-6 px-6">
                         Your donation will directly support {selectedOrg?.name}
-                        's mission.
+                        &apos;s mission.
                       </Text>
                     </View>
                   </TouchableWithoutFeedback>
@@ -535,4 +514,4 @@ const organisationProfile = () => {
   );
 };
 
-export default organisationProfile;
+export default OrganisationProfile;

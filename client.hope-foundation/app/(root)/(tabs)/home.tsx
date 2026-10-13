@@ -2,8 +2,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import OrgCard from "@/components/OrgCard";
 import { icons, images } from "@/constant";
 import { useFetch } from "@/lib/fetch";
-import { useUser, useClerk } from "@clerk/clerk-expo";
-import { useAuth } from "@clerk/clerk-expo";
+import { useUser, useAuth } from "@clerk/clerk-expo";
 import { Organisation } from "@/types/type";
 import {
   ActivityIndicator,
@@ -14,16 +13,14 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 // Zustand management for organisations
 import { useOrganisationStore } from "@/store/useOrganisationStore";
 import { router } from "expo-router";
-import React from "react";
 
-const home = () => {
+const Home = () => {
   const { user } = useUser();
-  const [loading, setLoading] = useState(true); // Track loading state
 
   // Clerk sign out hook
   const { signOut } = useAuth();
@@ -53,16 +50,14 @@ const home = () => {
 
   // Store organisation data from database into Zustand state
   const organisations = response?.data;
+  const loading = !response && !error;
 
   // Set loading state based on data fetching status
   useEffect(() => {
-    if (response || error) {
-      setLoading(false); // Stop loading when data or error is available
-    }
     if (organisations) {
       setOrganisations(organisations);
     }
-  }, [response, error, organisations]);
+  }, [response, error, organisations, setOrganisations]);
 
   // On press function when organisation clicked
   const handlePress = (item: Organisation) => {
@@ -145,4 +140,4 @@ const home = () => {
     </SafeAreaView>
   );
 };
-export default home;
+export default Home;

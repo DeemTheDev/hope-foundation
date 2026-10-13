@@ -1,6 +1,6 @@
 import { Alert, Text, TouchableOpacity, View, Image } from "react-native";
 import { useStripe } from "@stripe/stripe-react-native";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fetchAPI } from "@/lib/fetch";
 import { useUser } from "@clerk/clerk-expo";
 import { PaymentProps } from "@/types/type";
