@@ -41,38 +41,42 @@ const Profile = () => {
           <View className="flex flex-col items-start justify-start w-full">
             <InputField
               label="User ID"
-              placeholder={user?.id || "Not Found"}
+              value={user?.id || "Not Found"}
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
 
             <InputField
               label="First name"
-              placeholder={
+              value={
                 user?.firstName ||
                 user?.primaryEmailAddress?.emailAddress.split("@")[0] || "Member"
               }
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
 
             <InputField
               label="Email"
-              placeholder={
+              value={
                 user?.primaryEmailAddress?.emailAddress || "Not Found"
               }
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
 
             <InputField
               label="Created"
-              placeholder={formatDate(user?.createdAt)}
+              value={formatDate(user?.createdAt)}
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
           </View>
