@@ -1,9 +1,9 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useCallback, useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  SafeAreaView,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -43,7 +43,7 @@ const SignIn = () => {
 
     try {
       const signInAttempt = await signIn.create({
-        identifier: form.email,
+        identifier: form.email.trim(),
         password: form.password,
       });
 
@@ -53,12 +53,12 @@ const SignIn = () => {
       } else {
         // See https://clerk.com/docs/custom-flows/error-handling
         // for more info on error handling
-        console.error(JSON.stringify(signInAttempt, null, 2));
+        Alert.alert("More verification required", "Your account needs another verification step before you can sign in.");
       }
     } catch (err: any) {
-      Alert.alert("Login Failed", `Error: ${err} `);
+      Alert.alert("Login Failed", err?.errors?.[0]?.longMessage || err?.message || "Please try again.");
     }
-  }, [isLoaded, form.email, form.password]);
+  }, [isLoaded, signIn, setActive, router, form.email, form.password]);
 
   return (
     <SafeAreaView className="flex-1 bg-main-primarybg">

@@ -1,7 +1,7 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
   Text,
-  SafeAreaView,
   ScrollView,
   Image,
   TouchableOpacity,
@@ -17,7 +17,7 @@ import { useOrganisationStore } from "@/store/useOrganisationStore";
 import { images as imageIcons, icons } from "@/constant";
 import { router } from "expo-router";
 import * as Linking from "expo-linking";
-import Carousel from "react-native-reanimated-carousel";
+import { Carousel } from "react-native-reanimated-carousel";
 import { useEffect, useState } from "react";
 import ReactNativeModal from "react-native-modal";
 import { useUser } from "@clerk/clerk-expo";
@@ -379,11 +379,11 @@ const organisationProfile = () => {
                   <View className="w-full h-48 bg-main-secondarybg rounded-lg overflow-hidden">
                     <Carousel
                       loop
-                      width={width - 40}
-                      height={192}
-                      autoPlay={true}
+                      itemSize={width - 40}
+                      style={{ width: width - 40, height: 192 }}
+                      autoplay={true}
                       data={galleryImages}
-                      scrollAnimationDuration={1000}
+                      animation={{ type: "timing", duration: 1000 }}
                       renderItem={({ item }) => <ImageSlide imageUrl={item} />}
                       defaultIndex={0}
                     />

@@ -1,10 +1,11 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect } from "react";
 import {
   View,
   FlatList,
   Text,
   ActivityIndicator,
-  SafeAreaView,
+  TouchableOpacity,
 } from "react-native";
 import { useOrganisationStore } from "@/store/useOrganisationStore";
 import { useUser } from "@clerk/clerk-expo";
@@ -22,7 +23,8 @@ const History = () => {
     data: response,
     loading,
     error,
-  } = useFetch<{ data: DonationHistory[] }>(`/(api)/donations/${user?.id}`);
+    refetch,
+  } = useFetch<{ data: DonationHistory[] }>(user?.id ? `/(api)/donations/${user.id}` : null);
 
   useEffect(() => {
     if (response && response.data) {
@@ -44,7 +46,17 @@ const History = () => {
   }
 
   if (error) {
-    return <Text>Error loading donation history: {error}</Text>;
+    return (
+      <SafeAreaView className="flex-1 bg-main-primarybg">
+        <View className="flex-1 items-center justify-center px-5">
+          <Text className="text-white text-center">Could not load donation history.</Text>
+          <Text className="text-white text-center mt-2">{error}</Text>
+          <TouchableOpacity onPress={refetch} className="mt-4 p-3">
+            <Text className="text-emerald-400">Try again</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
   }
 
   const renderItem = ({ item }: { item: DonationHistory }) => (
@@ -56,7 +68,7 @@ const History = () => {
     <>
       <View className="p-4 mt-2 mb-2">
         <Text className="text-2xl font-JakartaExtraBold text-white">
-          Payment Reciepts{" "}
+          Payment Receipts{" "}
         </Text>
       </View>
     </>

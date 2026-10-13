@@ -8,8 +8,9 @@ const Profile = () => {
   const { user } = useUser();
 
   // helper function to format Date
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const formatDate = (dateValue: Date | null | undefined) => {
+    if (!dateValue) return "Not Found";
+    const date = new Date(dateValue);
     return date.toLocaleDateString("en-ZA", {
       year: "numeric",
       month: "numeric",
@@ -50,7 +51,7 @@ const Profile = () => {
               label="First name"
               placeholder={
                 user?.firstName ||
-                user?.emailAddresses[0].emailAddress.split("@")[0]
+                user?.primaryEmailAddress?.emailAddress.split("@")[0] || "Member"
               }
               containerStyle="w-full"
               inputStyle="p-3.5"
@@ -69,7 +70,7 @@ const Profile = () => {
 
             <InputField
               label="Created"
-              placeholder={formatDate(`${user?.createdAt}`) || "Not Found"}
+              placeholder={formatDate(user?.createdAt)}
               containerStyle="w-full"
               inputStyle="p-3.5"
               editable={false}
