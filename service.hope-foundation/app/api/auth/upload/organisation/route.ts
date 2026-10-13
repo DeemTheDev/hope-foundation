@@ -3,14 +3,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import { addOrganisationImage } from '@/db';
 
-const s3Client = new S3Client({
-  region: process.env.NEXT_AWS_S3_REGION!,
-  credentials: {
-    accessKeyId: process.env.NEXT_AWS_S3_ACCESS_KEY_ID!,
-    secretAccessKey: process.env.NEXT_AWS_S3_SECRET_ACCESS_KEY!,
-  }
-});
-
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
@@ -23,6 +15,24 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    if (!process.env.NEXT_AWS_S3_REGION ||
+        !process.env.NEXT_AWS_S3_ACCESS_KEY_ID ||
+        !process.env.NEXT_AWS_S3_SECRET_ACCESS_KEY ||
+        !process.env.NEXT_AWS_S3_BUCKET_NAME) {
+      return NextResponse.json(
+        { error: 'Image uploads are not configured' },
+        { status: 503 }
+      );
+    }
+
+    const s3Client = new S3Client({
+      region: process.env.NEXT_AWS_S3_REGION!,
+      credentials: {
+        accessKeyId: process.env.NEXT_AWS_S3_ACCESS_KEY_ID!,
+        secretAccessKey: process.env.NEXT_AWS_S3_SECRET_ACCESS_KEY!,
+      }
+    });
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
