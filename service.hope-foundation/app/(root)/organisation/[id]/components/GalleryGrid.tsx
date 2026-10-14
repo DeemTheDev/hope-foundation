@@ -199,7 +199,7 @@ const GalleryGrid = ({ id }: { id: string }) => {
                   </button>
                 </div>
               </div>
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
+              <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-black/60 to-transparent p-4">
                 <p className="text-xs text-white">
                   Added: {new Date(image.created_at).toLocaleDateString()}
                 </p>

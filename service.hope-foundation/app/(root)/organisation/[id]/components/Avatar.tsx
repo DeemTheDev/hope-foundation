@@ -128,7 +128,7 @@ const Avatar = ({ id }: { id: string }) => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row items-center gap-6 p-4 bg-base-100 rounded-xl shadow-sm">
+    <div className="flex flex-col md:flex-row items-center gap-6 p-4 bg-base-100 rounded-xl shadow-xs">
       <div className="relative group">
         <div className="w-24 h-24 rounded-full overflow-hidden ring-2 ring-primary/20">
           <img
@@ -179,7 +179,7 @@ const Avatar = ({ id }: { id: string }) => {
                     email: e.target.value,
                   }))
                 }
-                className="input input-bordered input-sm w-full pl-8"
+                className="input input-sm w-full pl-8"
               />
               <Mail
                 size={16}
@@ -198,7 +198,7 @@ const Avatar = ({ id }: { id: string }) => {
                     website: e.target.value,
                   }))
                 }
-                className="input input-bordered input-sm w-full pl-8"
+                className="input input-sm w-full pl-8"
               />
               <Globe
                 size={16}

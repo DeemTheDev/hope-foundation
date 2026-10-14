@@ -110,7 +110,7 @@ const AddOrganisation = () => {
       <div className="w-full max-w-2xl mx-auto space-y-6">
         <form onSubmit={handleSubmit}>
           {/* Basic Info Section */}
-          <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+          <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
             <h3 className="text-lg font-medium">Basic Information</h3>
 
             <div className="space-y-4">
@@ -170,7 +170,7 @@ const AddOrganisation = () => {
           </div>
 
           {/* Description Section */}
-          <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+          <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
             <h3 className="text-lg font-medium">About</h3>
             <textarea
               value={formData.description}
@@ -186,7 +186,7 @@ const AddOrganisation = () => {
           </div>
 
           {/* Address Section */}
-          <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+          <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
             <h3 className="text-lg font-medium">Location</h3>
             <div className="relative">
               <input
@@ -207,7 +207,7 @@ const AddOrganisation = () => {
           </div>
 
           {/* Generate Logins Section */}
-          <div className="bg-base-100 rounded-xl shadow-sm p-4 space-y-4">
+          <div className="bg-base-100 rounded-xl shadow-xs p-4 space-y-4">
             <h3 className="text-lg font-medium">Generated Login Credentials</h3>
             <div className="space-y-4">
               <div className="relative">

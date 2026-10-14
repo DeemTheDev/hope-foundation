@@ -6,7 +6,7 @@ import AppStore from "@/assets/icons/appstore.png";
 
 export default async function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b text-white bg-black">
+    <main className="min-h-screen bg-linear-to-b text-white bg-black">
       {/* Navigation Bar */}
       <nav className="absolute top-0 right-0 p-6 z-10 ">
         <Link
@@ -64,7 +64,7 @@ export default async function Home() {
           </div>
 
           {/* Spline Animation */}
-          <div className="relative  top-0 w-[50%] h-[100%] lg:block">
+          <div className="relative w-full lg:w-1/2 h-[420px] lg:h-[560px]">
             <Spline scene="https://prod.spline.design/bpU-YbSGNmDVuD-J/scene.splinecode" />
           </div>
         </div>
