@@ -44,6 +44,9 @@ export const useFetch = <T>(url: string | null, options?: RequestInit) => {
   }, [url, options]);
 
   useEffect(() => {
+    // This effect starts the network request when its inputs change.
+    // Loading/error state belongs to that request lifecycle.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchData();
   }, [fetchData]);
 
