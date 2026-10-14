@@ -92,7 +92,7 @@ const CurrentUsers = () => {
     return (
       <div className="bg-base-100 rounded-xl shadow-sm p-4">
         <div className="text-center">
-          No users found matching "{searchQuery}"
+          No users found matching &quot;{searchQuery}&quot;
         </div>
       </div>
     );

@@ -1,0 +1,26 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const vm = require('node:vm');
+const path = require('node:path');
+const client = path.resolve(__dirname, '..');
+const ts = require(path.join(client, 'node_modules/typescript'));
+const source = fs.readFileSync(path.join(client, 'lib/fetch.ts'), 'utf8');
+const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS }}).outputText;
+const context = {exports: {}, require: () => ({}), console: {error() {}}, fetch: null};
+vm.runInNewContext(compiled, context);
+(async () => {
+  context.fetch = async () => ({ok:true, json:async()=>({data:[]})});
+  assert.equal(JSON.stringify(await context.exports.fetchAPI('/organisation')), '{"data":[]}');
+  let parsed = false;
+  context.fetch = async () => ({ok:false,status:500,json:async()=>{parsed=true; return {error:'private server detail'};}});
+  await assert.rejects(context.exports.fetchAPI('/organisation'), /HTTP 500/);
+  assert.equal(parsed,false,'A failed response must not be treated as successful data');
+  context.fetch = async () => {throw new Error('Network unavailable');};
+  await assert.rejects(context.exports.fetchAPI('/organisation'), /Network unavailable/);
+  let sent;
+  context.fetch = async (url,options) => {sent={url,options};return {ok:true,json:async()=>({data:[]})};};
+  const options={method:'POST',body:JSON.stringify({name:'Fixture'})};
+  await context.exports.fetchAPI('/user',options);
+  assert.equal(sent.options,options);
+  console.log('PASS: successful empty data, HTTP rejection, network failure and POST forwarding (4 checks).');
+})().catch(error=>{console.error(error);process.exitCode=1;});

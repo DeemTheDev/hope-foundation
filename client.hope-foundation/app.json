@@ -7,11 +7,6 @@
     "icon": "",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#00D09E"
-    },
     "ios": {
       "supportsTablet": true
     },
@@ -27,7 +22,20 @@
       "favicon": ""
     },
     "plugins": [
-      ["expo-router", {"origin": "https://hopefoundation.com/"}]
+      [
+        "expo-router",
+        {
+          "origin": "https://hopefoundation.com/"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#00D09E"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

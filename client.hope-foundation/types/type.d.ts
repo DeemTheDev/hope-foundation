@@ -60,7 +60,6 @@ declare interface OrganisationStore {
   history: DonationHistory;
 }
 
-
 declare interface PaymentProps extends TouchableOpacityProps {
   fullName: string | null;
   email: string;
@@ -77,8 +76,6 @@ interface OrganizationPaymentCardProps {
   setAmount: (amount: string) => void;
   handlePayment: (item: Organisation) => void;
 }
-
-
 
 declare interface PaymentStore{
   paymentData: PaymentProps | null;
@@ -100,29 +97,10 @@ declare interface OrgData {
 
 // Update OrgCardProps to use the Organization type
 declare interface OrgCardProps {
-  org: Organisation;  // Changed from item: UserData
+  org: Organisation;
   selected?: number;  // Made optional since it might not always be needed
   setSelected?: () => void;  // Made optional
 }
-
-// Keep all other interfaces as they are
-declare interface UserData {
-  id: number;
-  profile_image_url: string;
-  imageUrl: string;
-  first_name: string;
-  last_name: string;
-  price?: string;
-}
-
-declare interface MapProps {
-  destinationLatitude?: number;
-  destinationLongitude?: number;
-  onDriverTimesCalculated?: (driversWithTimes: MarkerData[]) => void;
-  selectedDriver?: number | null;
-  onMapReady?: () => void;
-}
-
 
 declare interface ButtonProps extends TouchableOpacityProps {
   title: string;
@@ -131,22 +109,6 @@ declare interface ButtonProps extends TouchableOpacityProps {
   IconLeft?: React.ComponentType<any>;
   IconRight?: React.ComponentType<any>;
   className?: string;
-}
-
-declare interface GoogleInputProps {
-  icon?: string;
-  initialLocation?: string;
-  containerStyle?: string;
-  textInputBackgroundColor?: string;
-  handlePress: ({
-    latitude,
-    longitude,
-    address,
-  }: {
-    latitude: number;
-    longitude: number;
-    address: string;
-  }) => void;
 }
 
 declare interface InputFieldProps extends TextInputProps {
@@ -158,47 +120,4 @@ declare interface InputFieldProps extends TextInputProps {
   inputStyle?: string;
   iconStyle?: string;
   className?: string;
-}
-
-
-
-declare interface LocationStore {
-  userLatitude: number | null;
-  userLongitude: number | null;
-  userAddress: string | null;
-  destinationLatitude: number | null;
-  destinationLongitude: number | null;
-  destinationAddress: string | null;
-  setUserLocation: ({
-    latitude,
-    longitude,
-    address,
-  }: {
-    latitude: number;
-    longitude: number;
-    address: string;
-  }) => void;
-  setDestinationLocation: ({
-    latitude,
-    longitude,
-    address,
-  }: {
-    latitude: number;
-    longitude: number;
-    address: string;
-  }) => void;
-}
-
-declare interface DriverStore {
-  drivers: MarkerData[];
-  selectedDriver: number | null;
-  setSelectedDriver: (driverId: number) => void;
-  setDrivers: (drivers: MarkerData[]) => void;
-  clearSelectedDriver: () => void;
-}
-
-declare interface OrgCardProps {
-  item: UserData;
-  selected: number;
-  setSelected: () => void;
 }

@@ -8,8 +8,9 @@ const Profile = () => {
   const { user } = useUser();
 
   // helper function to format Date
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString);
+  const formatDate = (dateValue: Date | null | undefined) => {
+    if (!dateValue) return "Not Found";
+    const date = new Date(dateValue);
     return date.toLocaleDateString("en-ZA", {
       year: "numeric",
       month: "numeric",
@@ -40,38 +41,42 @@ const Profile = () => {
           <View className="flex flex-col items-start justify-start w-full">
             <InputField
               label="User ID"
-              placeholder={user?.id || "Not Found"}
+              value={user?.id || "Not Found"}
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
 
             <InputField
               label="First name"
-              placeholder={
+              value={
                 user?.firstName ||
-                user?.emailAddresses[0].emailAddress.split("@")[0]
+                user?.primaryEmailAddress?.emailAddress.split("@")[0] || "Member"
               }
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
 
             <InputField
               label="Email"
-              placeholder={
+              value={
                 user?.primaryEmailAddress?.emailAddress || "Not Found"
               }
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
 
             <InputField
               label="Created"
-              placeholder={formatDate(`${user?.createdAt}`) || "Not Found"}
+              value={formatDate(user?.createdAt)}
               containerStyle="w-full"
               inputStyle="p-3.5"
+              style={{ color: "#052224" }}
               editable={false}
             />
           </View>

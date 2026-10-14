@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getOrganisation,
   getOrganisationSocial,
@@ -8,11 +8,8 @@ import {
 } from "@/db";
 import { Organisation, OrganisationSocial } from "@/types/type";
 import {
-  Camera,
   Check,
   X,
-  Mail,
-  Globe,
   MapPin,
   Facebook,
   Twitter,
