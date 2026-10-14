@@ -1,0 +1,4 @@
+{
+  "js/ts.tsdk.path": "client.hope-foundation/node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true
+}

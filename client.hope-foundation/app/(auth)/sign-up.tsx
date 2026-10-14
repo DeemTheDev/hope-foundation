@@ -1,9 +1,9 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
-  SafeAreaView,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
@@ -21,11 +21,21 @@ import { useSignUp } from "@clerk/clerk-expo";
 import ReactNativeModal from "react-native-modal";
 import { fetchAPI } from "@/lib/fetch";
 
+const signUpErrorMessage = (error: unknown): string => {
+  const details = error as {
+    errors?: { longMessage?: string; message?: string }[];
+    message?: string;
+  } | null;
+  return details?.errors?.[0]?.longMessage || details?.errors?.[0]?.message ||
+    details?.message || "Could not complete sign-up. Please try again.";
+};
+
 const SignUp = () => {
   // Modal states
   // Switch between success and verification modal
 
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   /**Form handling with Clerk provider for authentication  */
 
@@ -48,13 +58,20 @@ const SignUp = () => {
   });
 
   const onSignUpPress = async () => {
+    if (isSubmitting) return;
     if (!isLoaded) {
+      Alert.alert("Sign-up is loading", "Please wait a moment and try again.");
+      return;
+    }
+    if (!form.email.trim() || !form.password) {
+      Alert.alert("Missing details", "Please enter your email and password.");
       return;
     }
 
+    setIsSubmitting(true);
     try {
       await signUp.create({
-        emailAddress: form.email, // Form email
+        emailAddress: form.email.trim(), // Form email
         password: form.password, // Form password
       });
 
@@ -67,7 +84,9 @@ const SignUp = () => {
       });
     } catch (err: any) {
       // If error consist console log it:
-      Alert.alert("Error", err.errors[0].longMessage);
+      Alert.alert("Sign-up failed", signUpErrorMessage(err));
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -117,7 +136,7 @@ const SignUp = () => {
     } catch (err: any) {
       setVerification({
         ...verification, // Spreads all properties
-        error: err.errors[0].longMessage,
+        error: signUpErrorMessage(err),
         state: "failed",
       });
     }
@@ -188,7 +207,8 @@ const SignUp = () => {
                 </Text>
 
                 <CustomButton
-                  title="Sign Up"
+                  title={isSubmitting ? "Sending code…" : "Sign Up"}
+                  disabled={isSubmitting}
                   className="py-4 rounded-lg "
                   onPress={onSignUpPress}
                   bgVariant="success"
@@ -226,7 +246,7 @@ const SignUp = () => {
               </Text>
 
               <Text className="font-Jakarta mb-5">
-                We've sent a verification code to: {form.email}
+                We&apos;ve sent a verification code to: {form.email}
               </Text>
 
               <InputField

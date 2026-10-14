@@ -1,28 +1,26 @@
+import { SafeAreaView } from "react-native-safe-area-context";
 import OrgCard from "@/components/OrgCard";
 import { icons, images } from "@/constant";
 import { useFetch } from "@/lib/fetch";
-import { useUser, useClerk } from "@clerk/clerk-expo";
-import { useAuth } from "@clerk/clerk-expo";
+import { useUser, useAuth } from "@clerk/clerk-expo";
 import { Organisation } from "@/types/type";
 import {
   ActivityIndicator,
+  Alert,
   FlatList,
   Image,
-  SafeAreaView,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 // Zustand management for organisations
 import { useOrganisationStore } from "@/store/useOrganisationStore";
 import { router } from "expo-router";
-import React from "react";
 
-const home = () => {
+const Home = () => {
   const { user } = useUser();
-  const [loading, setLoading] = useState(true); // Track loading state
 
   // Clerk sign out hook
   const { signOut } = useAuth();
@@ -36,28 +34,30 @@ const home = () => {
   const setSelectedOrg = useOrganisationStore((state) => state.setSelectedOrg);
 
   // Function to log out the user
-  const handleSignOut = () => {
-    signOut();
-    router.replace("/(auth)/sign-in");
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      router.replace("/(auth)/sign-in");
+    } catch {
+      Alert.alert("Sign-out failed", "Please try again.");
+    }
   };
 
   // Fetch organisation data from the database
-  const { data: response, error } = useFetch<{ data: Organisation[] }>(
+  const { data: response, error, refetch } = useFetch<{ data: Organisation[] }>(
     "/(api)/organisation"
   );
 
   // Store organisation data from database into Zustand state
   const organisations = response?.data;
+  const loading = !response && !error;
 
   // Set loading state based on data fetching status
   useEffect(() => {
-    if (response || error) {
-      setLoading(false); // Stop loading when data or error is available
-    }
     if (organisations) {
       setOrganisations(organisations);
     }
-  }, [response, error, organisations]);
+  }, [response, error, organisations, setOrganisations]);
 
   // On press function when organisation clicked
   const handlePress = (item: Organisation) => {
@@ -81,6 +81,14 @@ const home = () => {
                 color="#000"
                 className="w-full h-full"
               />
+            ) : error ? (
+              <View className="items-center mt-8">
+                <Text className="text-white text-center">Could not load organisations.</Text>
+                <Text className="text-white text-center mt-2">{error}</Text>
+                <TouchableOpacity onPress={refetch} className="mt-4 p-3">
+                  <Text className="text-emerald-400">Try again</Text>
+                </TouchableOpacity>
+              </View>
             ) : (
               <>
                 <Image
@@ -102,7 +110,7 @@ const home = () => {
               <Text className="text-xl font-JakartaExtraBold capitalize text-white">
                 Welcome,{" "}
                 {user?.firstName ||
-                  user?.emailAddresses[0].emailAddress.split("@")[0]}{" "}
+                  user?.primaryEmailAddress?.emailAddress.split("@")[0] || "Member"}{" "}
                 👋
               </Text>
               <TouchableOpacity
@@ -132,4 +140,4 @@ const home = () => {
     </SafeAreaView>
   );
 };
-export default home;
+export default Home;

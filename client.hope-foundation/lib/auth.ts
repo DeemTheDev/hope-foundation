@@ -22,7 +22,7 @@ import { fetchAPI } from './fetch'
   async saveToken(key: string, value: string) {
     try {
       return SecureStore.setItemAsync(key, value)
-    } catch (err) {
+    } catch {
       return
     }
   },

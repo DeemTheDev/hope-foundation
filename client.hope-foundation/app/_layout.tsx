@@ -1,3 +1,5 @@
+import "../global.css";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
@@ -44,6 +46,7 @@ export default function RootLayout() {
   }
 
   return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
     <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
       <ClerkLoaded>
         <Stack>
@@ -54,5 +57,6 @@ export default function RootLayout() {
         </Stack>
       </ClerkLoaded>
     </ClerkProvider>
+    </GestureHandlerRootView>
   );
 }

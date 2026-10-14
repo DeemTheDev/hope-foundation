@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { createBlogPost, deleteBlogPost, getBlogPosts } from "@/db";
 import { BlogPost } from "@/types/type";
 import {
-  PencilLine,
   Upload,
   Trash2,
   AlertCircle,

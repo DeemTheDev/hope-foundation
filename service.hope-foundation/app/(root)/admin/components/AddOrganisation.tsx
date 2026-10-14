@@ -99,6 +99,7 @@ const AddOrganisation = () => {
       }, 0);
     } catch (err) {
       console.error("Error creating organisation:", err);
+      setError("Failed to create organisation. Please try again.");
     } finally {
       setLoading(false);
     }
